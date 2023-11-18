@@ -1,0 +1,11 @@
+aiohttp
+furl
+loguru
+PyYAML
+qrcode
+requests
+rich
+pyppeteer
+pillow
+moment
+python-telegram-bot

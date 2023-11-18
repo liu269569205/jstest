@@ -1,0 +1,55 @@
+{
+    "zqkdFast_daily": {
+        "GetFightList" : "https://user.youth.cn/FastApi/Activity/getFightList.json",
+        "PkFightGame" : "https://user.youth.cn/FastApi/Activity/pkFightGame.json",
+        "InviteRewards" : "https://user.youth.cn/FastApi/Activity/inviteRewards.json",
+        "GetRotaryInfo": "https://user.youth.cn/v1/RotaryTable/getData",
+        "TurnRotary": "https://user.youth.cn/v1/RotaryTable/turnRotary"
+    },
+    "zqkdFast_shareRead": {
+        "waitTime": 3000,
+        "ListArts" : "https://user.youth.cn/FastApi/article/lists.json",
+        "ReadArts" : "https://user.youth.cn/v1/article/detail.json",
+        "ShareArticleCallback" : "https://user.youth.cn/FastApi/ArticleTop/shareArticleCallback.json",
+        "ShareEnd": "https://user.youth.cn/FastApi/article/shareEnd.json",
+        "ShareReadStep1": "https://user.youth.cn/count2/storage",
+        "ShareReadStep2": "https://user.youth.cn/count2/openpage",
+        "ShareReadStep3": "https://user.youth.cn/count2/visit",
+        "ShareReadStep4": "https://user.youth.cn/count2/callback"
+    },
+    "zqkdFast_read": {
+        "secret": "DgAbsmBCCGUapF1YChc",
+        "waitTime": 30000,
+        "ListArts" : "https://user.youth.cn/FastApi/article/lists.json",
+        "ReadArts" : "https://user.youth.cn/v1/article/detail.json",
+        "CompleteArts" : "https://user.youth.cn/FastApi/article/complete.json"
+    },
+    "zqkdFast_reward": {
+        "secret": "DgAbsmBCCGUapF1YChc",
+        "invite": "KoQex08o",
+        "Sign" : "https://user.youth.cn/FastApi/Task/sign.json",
+        "ToGetReward" : "https://user.youth.cn/FastApi/CommonReward/toGetReward.json",
+        "GetCoinInfo" : "https://user.youth.cn/v1/user/userinfo.json",
+        "UploadTask": "https://user.youth.cn/FastApi/NewTaskSimple/uploadTask.json"
+    },
+    "zqkdFast_kkz": {
+        "secret": "DgAbsmBCCGUapF1YChc",
+        "blackId": "uid=1037638361&token=1IvDz8sOpqFrgOEXR%2F14ISbLVq0LcR%2FbUpZm9dm6wZBuHbpu0YUgRp%2B5zPwh7dk416F4Y3FHa4vQ5iwsgy1JPA&token_id=3e9014b01d5cc42f9a29803f6ef7a284",
+        "scanLimit": [10200,13000],
+        "extraTaskId": [3935,3204,3069,3202,3203,3088,4130,3402,3903,4508,4499,4233,3577,4090,3960,3088,4428,4470,4389,4108,4253,3957,3145,3088,3402,4153,4568,3958,10061,4081,4020,4060,4313],
+        "waitTime": 7000,
+        "GetTaskList" : "https://user.youth.cn/v1/Nameless/adlickstart.json",
+        "adlickstart" : "https://user.youth.cn/v1/Nameless/adlickstart.json",
+        "bannerstatus" : "https://user.youth.cn/v1/Nameless/bannerstatus.json",
+        "adlickend" : "https://user.youth.cn/v1/Nameless/adlickend.json",
+        "getBoxRewardConf": "https://user.youth.cn/v1/Nameless/getBoxRewardConf.json",
+        "getBoxReward": "https://user.youth.cn/v1/Nameless/getBoxReward.json"
+    },
+    "kaka": {
+        "invite": "NA3GDJR"
+    },
+    "txs": {
+        "invite": "48244418",
+        "secret": "mibook_123456"
+    }
+}
