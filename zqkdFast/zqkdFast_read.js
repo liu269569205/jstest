@@ -16,7 +16,7 @@ https://user.youth.cn/FastApi/NewTaskSimple/getTaskList  https://raw.githubuserc
 [MITM]
 user.youth.cn
 */
-var proxy="http://hk.rmysh.com/";
+var proxy="https://gh.api.99988866.xyz/";
 var getStackTrace = function() {
 	var obj = {};
 	Error.captureStackTrace(obj, getStackTrace);
