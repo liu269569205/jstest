@@ -6,7 +6,7 @@
 定时一天一次或者两次，注意跑的时候不要做其他任务，否则有可能失败
 35 6,20 * * *
 */
-var proxy="https://gh.api.99988866.xyz/";
+var proxy="https://mirror.ghproxy.com/";
 const _0x55e010 = _0x4ac2;
 function _0x4ac2(_0x3be9ba, _0x430bb1) {
     const _0x3dd85d = _0x4e50();

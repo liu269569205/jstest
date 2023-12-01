@@ -9,7 +9,7 @@
 需要zqkdFastCookie，自行捉包填写或者使用文章重写去捉，格式uid=xxxx&token=xxxxx&token_id=xxxxx，多账号用@连接
 需要设置被阅读的次数，填到zqkdFastShareNum里，不填默认不跑
 */
-var proxy="https://gh.api.99988866.xyz/";
+var proxy="https://mirror.ghproxy.com/";
 const _0x2b80e9 = _0xfbe4; (function(_0x152660, _0x56d3ef) {
     const _0x25f1bb = _0xfbe4,
     _0x4a7bc4 = _0x152660();
