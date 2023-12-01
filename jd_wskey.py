@@ -341,7 +341,7 @@ def check_ck(ck):  # 方法 检查 Cookie有效性 使用变量传递 单次调�
             'user-agent': ua
         }  # 设置 HTTP头
         try:  # 异常捕捉
-            res = requests.get(url=url, headers=headers, verify=False,
+            res = requests.get(url=url, headers=headers, verify=False, proxies={"http": proxys, "https": proxys},
                                timeout=10, allow_redirects=False)  # 进行 HTTP请求[GET] 超时 10秒
         except Exception as err:  # 异常捕捉
             logger.debug(str(err))  # 调试日志输出
@@ -458,7 +458,8 @@ def appjmp(wskey, tokenKey):  # 方法 传递 wskey & tokenKey
     }  # 设置 HTTP_URL 参数
     url = 'https://un.m.jd.com/cgi-bin/app/appjmp'  # 设置 URL地址
     try:  # 异常捕捉
-        res = requests.get(url=url, headers=headers, params=params, verify=False,  allow_redirects=False, timeout=20)  # HTTP请求 [GET] 阻止跳转 超时 20秒
+        res = requests.get(url=url, headers=headers, params=params, verify=False, proxies={
+                           "http": proxys, "https": proxys}, allow_redirects=False, timeout=20)  # HTTP请求 [GET] 阻止跳转 超时 20秒
     except Exception as err:  # 异常捕捉
         logger.info("JD_appjmp 接口错误 请重试或者更换IP\n")  # 标准日志输出
         logger.info(str(err))  # 标准日志输出
@@ -718,7 +719,7 @@ if __name__ == '__main__':  # Python主函数执行入口
     else:  # 判断分支
         sleepTime = 10  # 默认休眠时间 10秒
     for ws in wslist:  # wslist变量 for循环  [wslist -> ws]
-        ua = 'okhttp/3.12.16;jdmall;android;version/12.1.0;build/98891;'
+        ua = getua()
         if os.getenv("WSKEY_PROXY_URL"):
             proxys = get_proxy_api(proxy_url)
         wspin = ws.split(";")[0]  # 变量分割 ;
