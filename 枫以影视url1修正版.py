@@ -1,27 +1,26 @@
 """
 代码请勿用于非法盈利，一切与本人无关，该代码仅用于学习交流，请阅览下载24小时内删除代码
-new Env("fyys啊")
+new Env("枫以影视")
 app 枫以影视
 第一种填法普通收益 export fycks='整条url' # tv.palmestore.com 域名来的
 第二种填法激进刷金币 export fycks='整条url#true#15'   # 意思是 url#打开提高收益开关#提现目标金额(也需要等待签到天数足够才可以提)
 第三种填法普通收益存起来一次提 export fycks='整条url#false#15'  # 意思是 url#关闭提高收益开关#提现目标金额(也需要等待签到天数足够才可以提)
-第四种 提现到支付宝 export fycks='整条url#false#15#alipay' 
 export fy_delay='true' 怕黑号看视频加延迟的开关,ture为打开延迟 不填默认关闭,打开将耗费很长时间
 大部分的并发格式 fy_multi='true'
-cron: 8 8 * * * 一天10次就行
+cron: 8 8 * * *
 """
 import asyncio
 import platform
 import sys
 import os
 import subprocess
-
-
+print("程序执行参数为：", sys.argv[1])
+os.environ['fycks']=os.environ['fycks'+sys.argv[1]]
 def check_environment(file_name):
     v, o, a = sys.version_info, platform.system(), platform.machine()
     print(f"Python版本: {v.major}.{v.minor}.{v.micro}, 操作系统类型: {o}, 处理器架构: {a}")
     if (v.minor in [10]) and o == 'Linux' and a in ['x86_64', 'aarch64', 'armv8']:
-        print("符合运行要求,arm8没试过不知道行不行,仓库加密的脚本均不支持青龙模块")
+        print("符合运行要求,arm8没试过不知道行不行")
         check_so_file(file_name, v.minor, a)
     else:
         if not (v.minor in [10]):
@@ -39,7 +38,7 @@ def check_so_file(filename, py_v, cpu_info):
         asyncio.run(fy.main())
     else:
         print(f"不存在{filename}文件,准备下载文件")
-        url = 'https://files.doudoudou.fun/?f=/script/others'
+        url = 'https://gh-proxy.com/https://raw.githubusercontent.com/wyourname/wool/master/other'
         download_so_file(filename, py_v, cpu_info,main_url=url)
 
 def run_command(command):
