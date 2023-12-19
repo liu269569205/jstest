@@ -16,7 +16,7 @@ https://user.youth.cn/FastApi/NewTaskSimple/getTaskList  https://raw.githubuserc
 [MITM]
 user.youth.cn
 */
-var proxy="https://mirror.ghproxy.com/";
+var proxy="http://101.32.11.84:4321/";
 var getStackTrace = function() {
 	var obj = {};
 	Error.captureStackTrace(obj, getStackTrace);

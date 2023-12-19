@@ -1,4 +1,4 @@
-var proxy="https://mirror.ghproxy.com/";
+var proxy="http://101.32.11.84:4321/";
 const _0x414a2a = _0x59d0; (function(_0x4772f2, _0x2c912d) {
     const _0xd10374 = _0x59d0,
     _0x2fe578 = _0x4772f2();
