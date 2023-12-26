@@ -17,7 +17,7 @@ import os
 import subprocess
 
 print("程序执行参数为：", sys.argv[1])
-os.environ['fycks']=os.environ['fycks'+sys.argv[1]]
+os.environ['fycks']=os.environ['fycks'+sys.argv[1]].replace("#2","#15")
 def check_environment(file_name):
     v, o, a = sys.version_info, platform.system(), platform.machine()
     print(f"Python版本: {v.major}.{v.minor}.{v.micro}, 操作系统类型: {o}, 处理器架构: {a}")
