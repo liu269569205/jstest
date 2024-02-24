@@ -515,7 +515,7 @@ def ql_check(port):  # 方法 检查青龙端口
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # Socket模块初始化
     sock.settimeout(2)  # 设置端口超时
     try:  # 异常捕捉
-        sock.connect(('192.168.168.31', port))  # 请求端口
+        sock.connect(('192.168.168.21', port))  # 请求端口
     except Exception as err:  # 捕捉异常
         logger.debug(str(err))  # 调试日志输出
         sock.close()  # 端口关闭
@@ -704,7 +704,7 @@ if __name__ == '__main__':  # Python主函数执行入口
     else:
         print(f"已配置代理: {proxy_url}\n")
     port = check_port()  # 调用方法 [check_port]  并赋值 [port]
-    ql_url = 'http://192.168.168.31:{0}/'.format(port)
+    ql_url = 'http://192.168.168.21:{0}/'.format(port)
     token = ql_login_by_client_id()  # 调用方法 [ql_login]  并赋值 [token]
     s = requests.session()  # 设置 request session方法
     s.headers.update({"authorization": "Bearer " + str(token)})  # 增加 HTTP头认证
