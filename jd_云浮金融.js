@@ -755,20 +755,6 @@ var MD5 = function (string) {
     return temp.toLowerCase();
 }
 
-var sc=[{"cookies":"PHPSESSID=3oa4epe1ukm4qibthg30ggjqa1","score":0,"sign":'',name:"春雨无情"},//晶城 
-//{"cookies":"Hm_lpvt_fa356a94bf5ae253b76fefa953bb56e4=1496068524; Hm_lvt_fa356a94bf5ae253b76fefa953bb56e4=1496067380; is_mobile=1; PHPSESSID=23h0sh2itb3vcd3os0731jih91; yunsuo_session_verify=175bfe09890979ca4cb30e4f5379b957","mobile":"13814929369","score":0,"sign":'',name:"李勇"},//唯一 
-//{"cookies":"yunsuo_session_verify=175bfe09890979ca4cb30e4f5379b957; PHPSESSID=j8u3kgkrk2unf5rrspsffgpub6; is_mobile=1; Hm_lvt_fa356a94bf5ae253b76fefa953bb56e4=1496068879; Hm_lpvt_fa356a94bf5ae253b76fefa953bb56e4=1496068879","mobile":"18017545866","score":0,"sign":'',name:"刘成文"},//唯一 
-
-//小龙虾 李龙 18914148845
-/*{"cookies":"o1GnmjmkKv23B4lPXBgyMXrAH8mU","url":"刘星","mobile":"18014246678","score":0},
-{"cookies":"o1GnmjmkKv23B4lPXBgyMXrAH8mU","url":"刘星","mobile":"18014246678","score":0},
-{"cookies":"o1GnmjmkKv23B4lPXBgyMXrAH8mU","url":"刘星","mobile":"18014246678","score":0},
-{"cookies":"o1GnmjmkKv23B4lPXBgyMXrAH8mU","url":"刘星","mobile":"18014246678","score":0},
-{"cookies":"o1GnmjmkKv23B4lPXBgyMXrAH8mU","url":"刘星","mobile":"18014246678","score":0},
-{"cookies":"o1GnmjmkKv23B4lPXBgyMXrAH8mU","url":"刘星","mobile":"18014246678","score":0},
-{"cookies":"o1GnmjmkKv23B4lPXBgyMXrAH8mU","url":"刘星","mobile":"18014246678","score":0},
-{"cookies":"o1GnmjmkKv23B4lPXBgyMXrAH8mU","url":"刘星","mobile":"18014246678","score":0},
-{"cookies":"o1GnmjmkKv23B4lPXBgyMXrAH8mU","url":"刘星","mobile":"18014246678","score":0}*/]
 function checkisexist(name){
 	for(var k=0;k<sc.length;k++){
 		if(eval("'" + name + "'")==sc[k].name){
@@ -1243,18 +1229,30 @@ success:function (data, textStatus) {
                     }
 });
 }
-
+var sc=[{"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1ODkxMDUsIm9wZW5JZCI6Im9hYUdkdF9xbF9WYl8tM2lxaWw3LUYzUWI0SmciLCJzYWxlc21hbk5vIjoiSDM2MDBERzlNVSIsIm1pbmlPcGVuSWQiOiJvb3NxdTR0YWNSREU0Ty1icXRJMmE1THRMMzdZIn0.UIlZUD__ub7jeX4FI1EQ4AoNzXJLmOUTqdbBGyktqkQ","score":0,"sign":'',name:"春雨无情"},//晶城 
+{"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1ODkzNjksIm9wZW5JZCI6Im9hYUdkdHkzUjRXUmRSbVB3MHdRdXJzRk5ybEUiLCJzYWxlc21hbk5vIjoiSDA0MDBDQ1QyUCIsIm1pbmlPcGVuSWQiOiJvb3NxdTRvV1dmeWVjbHZvdlUwUTdPeHRIVmJBIn0.6EY5jB5wY67RO1reVv4Jf_Wiban0uMEKp93JDcTNrps","score":0,"sign":'',name:"春雨无情"},//晶城 
+{"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1ODk2MDIsIm9wZW5JZCI6Im9hYUdkdHhVcWFoZjhENWhCRTBROHRkZGR3V3MiLCJzYWxlc21hbk5vIjoiSDM2MDBER0FZUCIsIm1pbmlPcGVuSWQiOiJvb3NxdTRycU5xNjZIbng3WmNzcTBkWTIzd2FRIn0.HUQUTHmifugNZ6oPB2k7Tz0h1zSKpEBAdnpyO8FW_Qo","score":0,"sign":'',name:"春雨无情"},//晶城 
+{"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1ODk3MzAsIm9wZW5JZCI6Im9hYUdkdHhUOFFNSDNrdmlzX3RpQlE4NWRqdTAiLCJzYWxlc21hbk5vIjoiSDM2MDBER0FZUiIsIm1pbmlPcGVuSWQiOiJvb3NxdTRnakYwRjBqX2lpRWlUOUI2MXpBNGRRIn0.GyCw_CZ5vgLH8ErO1mSwrIR7OflLjDqxZKwdRMyHwBk","score":0,"sign":'',name:"春雨无情"},//晶城 
+{"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1ODk4MTYsIm9wZW5JZCI6Im9hYUdkdF9jOHFfZXFBMXpOU0prbXRtLXNpNlUiLCJzYWxlc21hbk5vIjoiSDM2MDBER0FZVSIsIm1pbmlPcGVuSWQiOiJvb3NxdTR1aXdyZXNaZnVWU19DZmV2ajFxVDlzIn0.0YWxS8wSVLWusvvv9fpvr0KVrKWK9h7kUhkaAVDYEbw","score":0,"sign":'',name:"春雨无情"},//晶城 
+{"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1ODk5MDIsIm9wZW5JZCI6Im9hYUdkdDZmZVdaZXlscGcwbUV6ZEZoZjQ1dUUiLCJzYWxlc21hbk5vIjoiSDM2MDBESUVDUSIsIm1pbmlPcGVuSWQiOiJvb3NxdTRxRmVFWnUxR09FQWhTT2hCWjFLQzVBIn0.QwIrseBKCulkE0YJ7mcyMz7L0dcT0gY6DM8kvfx2R0U","score":0,"sign":'',name:"春雨无情"},//晶城 
+{"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1OTAwMDgsIm9wZW5JZCI6Im9hYUdkdHpPU2JTTG5OWERKUjNxanNNZ0pUaGciLCJzYWxlc21hbk5vIjoiSDEwMDBER0FZVCIsIm1pbmlPcGVuSWQiOiJvb3NxdTR1VnQ1bEMybVA5VFNhS3pLQnRBWDNrIn0.daojs-YKbWFz5xilPinXgPngOxYAW28AMRQ8bN9Ttlc","score":0,"sign":'',name:"春雨无情"},//晶城 
+{"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1OTAxNDIsIm9wZW5JZCI6Im9hYUdkdDlmOG5wd2owQ1QtaU92MjFFVkMwVEEiLCJzYWxlc21hbk5vIjoiSDM2MDBER0FZViIsIm1pbmlPcGVuSWQiOiJvb3NxdTRtdzdyRXVGb1ZSeE1HQVZMXzlLRjBRIn0.TpxfujyvYY1NC6dCVcMELTQ0zF6HhHuay8afOSWMk2g","score":0,"sign":'',name:"春雨无情"},//晶城 
+{"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1OTAyNDksIm9wZW5JZCI6Im9hYUdkdHlsaV9jUlpDTG1SYzhMWDlDNHlTbTAiLCJzYWxlc21hbk5vIjoiSDM2MDBER0FZWCIsIm1pbmlPcGVuSWQiOiJvb3NxdTRrb0Z2VlhzQVlaX280cG9HNjUtN3B3In0.upoqhcZpsQJBaXYsXQIloX3T589SSils_8SvU9Is3qU","score":0,"sign":'',name:"春雨无情"},//晶城 
+{"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1OTAzMzUsIm9wZW5JZCI6Im9hYUdkdDN6NE5KS1Y5b0R4eUdqdkVWM2hvU28iLCJzYWxlc21hbk5vIjoiSDAyMDBESUVDUiIsIm1pbmlPcGVuSWQiOiJvb3NxdTRyT1paREsyTmNsdl9aMENVS19sa3Q4In0.DfTSn6CK3WMwaga00wNo08P1sDKx7M9eooKrv5y3-wI","score":0,"sign":'',name:"春雨无情"},//晶城 
+{"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1OTA1MjgsIm9wZW5JZCI6Im9hYUdkdC1jaEw4UGRVOFBxUXpOZ1VoSUstWnciLCJzYWxlc21hbk5vIjoiSDAyMDBESDI4VCIsIm1pbmlPcGVuSWQiOiJvb3NxdTRsNjZhT1FGU1RtSUY3T00yLWNhaEhRIn0.xkzDQojBNwBHlV7GjoKtMWkeCu_iP71iZGiA-wYZ86w","score":0,"sign":'',name:"春雨无情"},//晶城 
+{"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1OTA2MDcsIm9wZW5JZCI6Im9hYUdkdDVQbURiWlF2T1FiQlpITmZWNUFqTE0iLCJzYWxlc21hbk5vIjoiSDAyMDBESjNURiIsIm1pbmlPcGVuSWQiOiJvb3NxdTRqWkUwUDBWMTV2cFYxaTRJR21UMmZvIn0.zh6nF6U9UiWLDmXsMDJWlURg_B880DtnTjVo44CyQHs","score":0,"sign":'',name:"春雨无情"},//晶城 
+]
 function info(i){
 	
-	
-	$.ajax({type:"post", url:"https://jrcz.vip.hnhxzkj.com/user/Index/index",data:'{}',dataType:"json", timeout:30000, cache:false,async :false,
+	//console.log(sc)
+	$.ajax({type:"get", url:"https://suishenyi.pingan.com/gateway/agent/welfare/sign_detail",data:'',dataType:"json", timeout:30000, cache:false,async :false,
 beforeSend:function (XMLHttpRequest) {
 
 
 XMLHttpRequest.setRequestHeader("Accept", "application/json, text/plain, */*");
 
 //XMLHttpRequest.setRequestHeader("Cookie",cookie);
-XMLHttpRequest.setRequestHeader("Authorization",cookie[i].token);
+XMLHttpRequest.setRequestHeader("Authorization",sc[i].cookies);
 XMLHttpRequest.setRequestHeader("User-Agent", "Mozilla/5.0 (Linux; Android 4.4.2; LG-D859 Build/KVT49L.D85910f) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Mobile Safari/537.36 MicroMessenger/5.4.0.51_r798589.480 NetType/WIFI");
 
 XMLHttpRequest.setRequestHeader("Accept-Encoding", "");
@@ -1271,7 +1269,7 @@ XMLHttpRequest.setRequestHeader('Referer','https://games.vip.hnhxzkj.com/');
 
 success:function (data, textStatus) {
 	console.log(data)
-end(i)
+//end(i)
 	
 	
 		
@@ -1295,13 +1293,8 @@ function in_array(search, array) {
     }
     return false;
 }
-for(var i=0;i<cookie.length;i++){
-	start(i);
+for(var i=0;i<sc.length;i++){
+	info(i);
 }
 
-
-setTimeout(function(){
-	
-	abc();
-},1000*60*60*3)
 return;
