@@ -1,11 +1,6 @@
 //author:https://github.com/yuzd 
 const request = require('request');
-
-const jar = request.jar();
-jar.setCookie(request.cookie('USERID=d9h9eilcmv8be1op0fen94sff4'), 'https://loseprivacy.xyz/checkin');
-jar.setCookie(request.cookie('notice=1'), 'https://loseprivacy.xyz/checkin');
-jar.setCookie(request.cookie('_pk_id.29.8a4e=bff527afe8be85b7.1713428749.1.1713428840.1713428749.'), 'https://loseprivacy.xyz/checkin');
-jar.setCookie(request.cookie('_pk_ses.29.8a4e=1'), 'https://loseprivacy.xyz/checkin');
+//https://loseprivacy.xyz/  269569205@163.com qwe123
 
 const options = {
   method: 'POST',
