@@ -4,7 +4,7 @@
 const axios = require('axios');
 
 // 创建axios实例并配置代理
-const axiosInstance = axios.create({
+/*const axiosInstance = axios.create({
   proxy: {
     host: '127.0.0.1',
     port: 8888
@@ -14,7 +14,7 @@ const axiosInstance = axios.create({
     //   password: 'YOUR_PROXY_PASSWORD'
     // }
   }
-});
+});*/
 //https://loseprivacy.xyz  269569205@163.com qwe123
 
 const options = {
