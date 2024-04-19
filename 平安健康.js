@@ -1231,10 +1231,10 @@ success:function (data, textStatus) {
 }
 var zsyy=[]
 var sc=[];
-if(process.env.ZSYY)
-	zsyy = process.env.ZSYY.split('\n');
+if(process.env.PAJK)
+	zsyy = process.env.PAJK.split('\n');
 else{
-	conosle.log("ZSYY环境变量不存在")
+	console.log("ZSYY环境变量不存在")
 }
 for(var i=0;i<zsyy.length;i++){
 	var ck={"cookies":zsyy[i]}
