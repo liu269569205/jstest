@@ -1229,7 +1229,18 @@ success:function (data, textStatus) {
                     }
 });
 }
-var sc=[{"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1ODkxMDUsIm9wZW5JZCI6Im9hYUdkdF9xbF9WYl8tM2lxaWw3LUYzUWI0SmciLCJzYWxlc21hbk5vIjoiSDM2MDBERzlNVSIsIm1pbmlPcGVuSWQiOiJvb3NxdTR0YWNSREU0Ty1icXRJMmE1THRMMzdZIn0.UIlZUD__ub7jeX4FI1EQ4AoNzXJLmOUTqdbBGyktqkQ","score":0,"sign":'',name:"春雨无情"},//晶城 
+var zsyy=[]
+var sc=[];
+if(process.env.ZSYY)
+	zsyy = process.env.ZSYY.split('\n');
+else{
+	conosle.log("ZSYY环境变量不存在")
+}
+for(var i=0;i<zsyy.length;i++){
+	var ck={"cookies":zsyy[i]}
+	sc.push(ck)
+}
+/*var sc=[{"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1ODkxMDUsIm9wZW5JZCI6Im9hYUdkdF9xbF9WYl8tM2lxaWw3LUYzUWI0SmciLCJzYWxlc21hbk5vIjoiSDM2MDBERzlNVSIsIm1pbmlPcGVuSWQiOiJvb3NxdTR0YWNSREU0Ty1icXRJMmE1THRMMzdZIn0.UIlZUD__ub7jeX4FI1EQ4AoNzXJLmOUTqdbBGyktqkQ","score":0,"sign":'',name:"春雨无情"},//晶城 
 {"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1ODkzNjksIm9wZW5JZCI6Im9hYUdkdHkzUjRXUmRSbVB3MHdRdXJzRk5ybEUiLCJzYWxlc21hbk5vIjoiSDA0MDBDQ1QyUCIsIm1pbmlPcGVuSWQiOiJvb3NxdTRvV1dmeWVjbHZvdlUwUTdPeHRIVmJBIn0.6EY5jB5wY67RO1reVv4Jf_Wiban0uMEKp93JDcTNrps","score":0,"sign":'',name:"春雨无情"},//晶城 
 {"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1ODk2MDIsIm9wZW5JZCI6Im9hYUdkdHhVcWFoZjhENWhCRTBROHRkZGR3V3MiLCJzYWxlc21hbk5vIjoiSDM2MDBER0FZUCIsIm1pbmlPcGVuSWQiOiJvb3NxdTRycU5xNjZIbng3WmNzcTBkWTIzd2FRIn0.HUQUTHmifugNZ6oPB2k7Tz0h1zSKpEBAdnpyO8FW_Qo","score":0,"sign":'',name:"春雨无情"},//晶城 
 {"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1ODk3MzAsIm9wZW5JZCI6Im9hYUdkdHhUOFFNSDNrdmlzX3RpQlE4NWRqdTAiLCJzYWxlc21hbk5vIjoiSDM2MDBER0FZUiIsIm1pbmlPcGVuSWQiOiJvb3NxdTRnakYwRjBqX2lpRWlUOUI2MXpBNGRRIn0.GyCw_CZ5vgLH8ErO1mSwrIR7OflLjDqxZKwdRMyHwBk","score":0,"sign":'',name:"春雨无情"},//晶城 
@@ -1242,6 +1253,7 @@ var sc=[{"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1ODkxMDUsIm9wZW5JZCI6Im9
 {"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1OTA1MjgsIm9wZW5JZCI6Im9hYUdkdC1jaEw4UGRVOFBxUXpOZ1VoSUstWnciLCJzYWxlc21hbk5vIjoiSDAyMDBESDI4VCIsIm1pbmlPcGVuSWQiOiJvb3NxdTRsNjZhT1FGU1RtSUY3T00yLWNhaEhRIn0.xkzDQojBNwBHlV7GjoKtMWkeCu_iP71iZGiA-wYZ86w","score":0,"sign":'',name:"春雨无情"},//晶城 
 {"cookies":"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTI1OTA2MDcsIm9wZW5JZCI6Im9hYUdkdDVQbURiWlF2T1FiQlpITmZWNUFqTE0iLCJzYWxlc21hbk5vIjoiSDAyMDBESjNURiIsIm1pbmlPcGVuSWQiOiJvb3NxdTRqWkUwUDBWMTV2cFYxaTRJR21UMmZvIn0.zh6nF6U9UiWLDmXsMDJWlURg_B880DtnTjVo44CyQHs","score":0,"sign":'',name:"春雨无情"},//晶城 
 ]
+*/
 function info(i){
 	
 	//console.log(sc)
