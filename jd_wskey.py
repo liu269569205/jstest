@@ -241,7 +241,7 @@ def check_ck(ck) -> bool:  # 方法 检查 Cookie有效性 使用变量传递 �
         }  # 设置 HTTP头
         try:
             res = requests.get(url=url, headers=headers, verify=False, timeout=10,
-                               allow_redirects=False)  # 进行 HTTP请求[GET] 超时 10秒
+                               allow_redirects=False, proxies={"http": proxys, "https": proxys})  # 进行 HTTP请求[GET] 超时 10秒
         except Exception as err:
             logger.debug(str(err))  # 调试日志输出
             logger.info("JD接口错误 请重试或者更换IP")  # 标准日志输出
@@ -287,7 +287,7 @@ def getToken(wskey):  # 方法 获取 Wskey转换使用的 Token 由 JD_API 返�
     data = 'body=%7B%22to%22%3A%22https%253a%252f%252fplogin.m.jd.com%252fjd-mlogin%252fstatic%252fhtml%252fappjmp_blank.html%22%7D&'  # 设置 POST 载荷
     try:
         res = requests.post(url=url, params=params, headers=headers, data=data, verify=False,
-                            timeout=10)  # HTTP请求 [POST] 超时 10秒
+                            timeout=10, proxies={"http": proxys, "https": proxys})  # HTTP请求 [POST] 超时 10秒
         res_json = json.loads(res.text)  # Json模块 取值
         tokenKey = res_json['tokenKey']  # 取出TokenKey
     except Exception as err:
@@ -318,7 +318,7 @@ def appjmp(wskey, tokenKey):  # 方法 传递 wskey & tokenKey
     url = 'https://un.m.jd.com/cgi-bin/app/appjmp'  # 设置 URL地址
     try:
         res = requests.get(url=url, headers=headers, params=params, verify=False, allow_redirects=False,
-                           timeout=20)  # HTTP请求 [GET] 阻止跳转 超时 20秒
+                           timeout=20, proxies={"http": proxys, "https": proxys})  # HTTP请求 [GET] 阻止跳转 超时 20秒
     except Exception as err:
         logger.info("JD_appjmp 接口错误 请重试或者更换IP\n")  # 标准日志输出
         logger.info(str(err))  # 标准日志输出
@@ -538,6 +538,17 @@ def check_port():  # 方法 检查变量传递端口
 
 
 if __name__ == '__main__':  # Python主函数执行入口
+    proxy_url = os.environ.get("WSKEY_PROXY_URL") or os.environ.get(
+        "WSKEY_PROXY_TUNNRL") or None
+    proxys = proxy_url
+    print("代理池接口:export WSKEY_PROXY_TUNNRL='http://127.0.0.1:123456'")
+    print("代理API接口(数据格式:txt;提取数量:每次一个):export WSKEY_PROXY_URL='http://xxx.com/apiUrl'")
+    print("没有代理可以自行注册，比如携趣，巨量，每日免费1000IP，完全够用")
+    if proxy_url is None:
+        print("\n\n没有配置代理URL，直连模式!\n环境变量WSKEY_PROXY_TUNNRL或WSKEY_PROXY_URL\n")
+        print("====================================")
+    else:
+        print(f"已配置代理: {proxy_url}\n")
     port = check_port()  # 调用方法 [check_port]  并赋值 [port]
     ql_url = f'http://127.0.0.1:{port}/'
     ql_session = requests.session()
@@ -554,6 +565,8 @@ if __name__ == '__main__':  # Python主函数执行入口
     WSKEY_UPDATE_BOOL = bool(os.environ.get("WSKEY_UPDATE_HOUR"))
     WSKEY_AUTO_DISABLE = bool(os.environ.get("WSKEY_AUTO_DISABLE"))
     for ws in wslist:  # wslist变量 for循环  [wslist -> ws]
+        if os.getenv("WSKEY_PROXY_URL"):
+            proxys = get_proxy_api(proxy_url)
         wspin = ws.split(";")[0]  # 变量分割 ;
         if "pin" in wspin:  # 判断 pin 是否存在于 [wspin]
             wspin = "pt_" + wspin + ";"  # 封闭变量
@@ -569,6 +582,8 @@ if __name__ == '__main__':  # Python主函数执行入口
                         if count < tryCount:  # 判断循环次
                             logger.info("{0} 秒后重试，剩余次数：{1}\n".format(sleepTime, tryCount - count))  # 标准日志输出
                             time.sleep(sleepTime)  # 脚本休眠 使用变量 [sleepTime]
+                            if os.getenv("WSKEY_PROXY_URL"):
+                                proxys = get_proxy_api(proxy_url)
                     if return_ws:  # 判断 [return_ws]返回值 Bool类型
                         # logger.info("wskey转pt_key成功", nt_key)  # 标准日志输出 [未启用]
                         logger.info("wskey转换成功")  # 标准日志输出
