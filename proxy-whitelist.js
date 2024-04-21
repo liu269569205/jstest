@@ -5,7 +5,6 @@ const CryptoJS = require('crypto-js');  //引用AES源码js
 //var data=process.argv[2];
 //console.log(data);
 var fs=require('fs');
-const httpProxy = require('http-proxy');
 var express=require('express');
 const bodyParser = require('body-parser')
 var app=express();
@@ -14,7 +13,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 
-const proxy1 = httpProxy.createProxyServer();
 const $ = new Env('定时更新白名单');
 
 async function delall() {
@@ -37,13 +35,14 @@ async function delall() {
 }
 async function getip(ip) {
 	console.log("获取ip")
-	var url='http://ident.me'
+	//var url='http://ident.me'
+	var url='http://checkip.dyndns.com'
   let myRequest = {url: url, method: `GET`};
   return new Promise(async resolve => {
         $.get(myRequest, (err, resp, data) => {
             try {
 				console.log(data)
-                
+               data= data.split(": ")[1].split("<")[0]
 					resolve(data)
             } catch (e) {
                 console.log(data);

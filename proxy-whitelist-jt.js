@@ -37,13 +37,14 @@ async function delall() {
 }
 async function getip(ip) {
 	console.log("获取ip")
-	var url='http://ident.me'
+	//var url='http://ident.me'
+	var url='http://checkip.dyndns.com'
   let myRequest = {url: url, method: `GET`};
   return new Promise(async resolve => {
         $.get(myRequest, (err, resp, data) => {
             try {
 				console.log(data)
-                
+                 data= data.split(": ")[1].split("<")[0]
 					resolve(data)
             } catch (e) {
                 console.log(data);
