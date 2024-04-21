@@ -42,6 +42,26 @@ except Exception as err:
 
 ver = 31207  # 版本号
 
+def get_proxy_api(proxy_url, max_retries=5, timeout=60, retry_delay=1):
+    for retry in range(max_retries):
+        res = requests.get(url=proxy_url)
+        print(f"使用代理：{res.text}")
+        proxy_ip_port = res.text.strip()
+        proxy_address = f"http://{proxy_ip_port}"
+
+        try:
+            response = requests.get(
+                "https://jd.com", proxies={"http": proxy_address, "https": proxy_address}, timeout=timeout)
+            if response.status_code == 200:
+                return proxy_address
+        except Exception as e:
+            print(f"代理检测失败，错误信息：{e}")
+
+        print("代理检测失败，重新获取...")
+        time.sleep(retry_delay)
+
+    print("无法获取可用的代理IP，尝试次数已达上限。")
+    return None
 
 def ttotp(key):
     key = base64.b32decode(key.upper() + '=' * ((8 - len(key)) % 8))
