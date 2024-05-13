@@ -35,7 +35,7 @@
     "zqkdFast_kkz": {
         "secret": "DgAbsmBCCGUapF1YChc",
         "blackId": "uid=1037638361&token=1IvDz8sOpqFrgOEXR%2F14ISbLVq0LcR%2FbUpZm9dm6wZBuHbpu0YUgRp%2B5zPwh7dk416F4Y3FHa4vQ5iwsgy1JPA&token_id=3e9014b01d5cc42f9a29803f6ef7a284",
-        "scanLimit": [11000,14000],
+        "scanLimit": [12000,14000],
         "extraTaskId": [3935,3204,3069,3202,3203,3088,4130,3402,3903,4508,4499,4233,3577,4090,3960,3088,4428,4470,4389,4108,4253,3957,3145,3088,3402,4153,4568,3958,10061,4081,4020,4060,4313],
         "waitTime": 7000,
         "GetTaskList" : "https://user.youth.cn/v1/Nameless/adlickstart.json",
