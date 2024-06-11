@@ -74,7 +74,7 @@ async function addip(ip) {
 async function get_num() {
 	console.log("剩余量")
 		var num=0;
-	var url='http://op.xiequ.cn/ApiUser.aspx?act=suitdt&uid=106093&ukey=FF8664E13108A4E5991F8C814DB0D2E5'
+	var url='http://op.xiequ.cn/ApiUser.aspx?act=suitdt&uid=141648&ukey=D5A60D4543FF4F43DD26CC03B8D4641D'
   let myRequest = {url: url, method: `GET`};
   return new Promise(async resolve => {
         $.get(myRequest, (err, resp, data) => {
