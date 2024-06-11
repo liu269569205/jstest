@@ -97,7 +97,7 @@ var lastip;
 	if(lastip!=ip){
 		await delall();
 		var left=await get_num();
-		if(left<10){
+		if(11<10){
 			//await addip('192.168.168.1');
 		}else{
 			await addip(ip);
