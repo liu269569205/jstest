@@ -91,6 +91,26 @@ async function get_num() {
         })
     })
 }
+async function get_num1() {
+	console.log("剩余量")
+		var num=0;
+	var url='http://op.xiequ.cn/ApiUser.aspx?act=suitdt&uid=106093&ukey=FF8664E13108A4E5991F8C814DB0D2E5'
+  let myRequest = {url: url, method: `GET`};
+  return new Promise(async resolve => {
+        $.get(myRequest, (err, resp, data) => {
+            try {
+				console.log(data)
+                data=JSON.parse(data);
+				num=data.data.num-data.data.use
+            } catch (e) {
+                console.log(data);
+                $.logErr(e, resp)
+            } finally {
+                resolve(num);
+            }
+        })
+    })
+}
 var lastip;
 !(async() => {
 	var ip=await getip();
@@ -100,6 +120,8 @@ var lastip;
 		if(left<10){
 			//await addip('192.168.168.1');
 		}else{
+			var left1=await get_num1();
+			if(left1<=0)
 			await addip(ip);
 		}
 		
