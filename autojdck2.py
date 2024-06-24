@@ -47,8 +47,7 @@ import random  #用于模拟延迟输入
 from re import T  # 随机数生成库
 import cv2  # OpenCV库，用于图像处理
 
-import subprocess
-
+import random,psutil,os,signal,time,subprocess,gc
 
 async def print_message(message):     #初始化异步print
     print(message)
@@ -358,7 +357,8 @@ async def validate_logon(usernum, passwd, notes, chromium_path):                
                 await SubmitCK(page, notes)  #提交ck
                 await SubmitCK2(page, notes)  #提交ck
                 print("正在关闭浏览器")
-                subprocess.Popen("taskkill /F /IM chrome.EXE ", shell=True)
+                kill(browser.process.pid,'chrom')
+                #subprocess.Popen("taskkill /F /IM chrome.EXE ", shell=True)
                 await asyncio.sleep(4)  # 等待10秒，等待
                 await browser.close()  #关闭浏览器
                 print("关闭浏览器成功")
@@ -697,5 +697,39 @@ async def main():  # 打开并读取配置文件，主程序
     os.remove('template.png') if os.path.exists('template.png') else None     #删除缓存照片
     await print_message('完成全部登录')
     await asyncio.sleep(10)  # 等待10秒，等待
-
+def kill(browser, name: str = ''):
+    pid = browser.process.pid;
+    if platform.system() == 'Windows':
+        # win平台
+        subprocess.Popen("taskkill /F /IM chrome.EXE ", shell=True)
+    else:
+        # linux平台
+            # 查看进程是否存在
+        if pid > 0 and psutil.pid_exists(pid):
+            # 查看进程状态是否是运行
+            p = psutil.Process(pid)
+            print('浏览器状态：%s' % p.status())
+            if p.status() != psutil.STATUS_ZOMBIE:
+                try:
+                    pgid = os.getpgid(pid)
+                    # 强制结束
+                    os.kill(pid, signal.SIGKILL)
+                    # os.kill(pgid, signal.SIGKILL)
+                    print("结束进程：%d" % self.pid)
+                    print("父进程是：%d" % pgid)
+                    print("浏览器状态：%d" % browser.process.wait())
+                except BaseException as err:
+                    print("close: {0}".format(err))
+            del p
+            # 查看是否还有其他进程
+        for proc in psutil.process_iter():
+            if name in proc.name():
+                try:
+                    pgid = os.getpgid(proc.pid)
+                    os.kill(proc.pid, signal.SIGKILL)
+                    print('已杀死pid:%d的进程pgid：%d名称：%s' % (proc.pid, pgid, proc.name()))
+                    del pgid
+                except BaseException as err:
+                    print("kill: {0}".format(err))
+    time.sleep(3)
 asyncio.get_event_loop().run_until_complete(main())  #使用异步I/O循环运行main()函数，启动整个自动登录和滑块验证流程。
