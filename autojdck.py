@@ -47,7 +47,7 @@ import random  #用于模拟延迟输入
 from re import T  # 随机数生成库
 import cv2  # OpenCV库，用于图像处理
 
-
+import subprocess
 
 
 async def print_message(message):     #初始化异步print
@@ -62,6 +62,9 @@ async def ifconfigfile():                           #判断有没有配置文件
 'qlip=http://192.168.1.1:5700\n',
 'client_id=*******\n',
 'client_secret=*******\n',
+'qlip2=http://192.168.1.2:5700\n',
+'client_id2=*******\n',
+'client_secret2=*******\n',
 '517123248#ya21udb95#我是备注1\n',
 '15611167798#123456789#我是备注2\n',
 ]
@@ -115,7 +118,7 @@ async def init_chrome():        #判断chrome是否存在，不存在则下载�
         else:
             print('貌似第一次使用，未找到chrome，正在下载chrome浏览器....')
 
-            chromeurl = 'http://npm.taobao.org/mirrors/chromium-browser-snapshots/Win_x64/588429/chrome-win32.zip'        #定义下载地址
+            chromeurl = 'https://storage.googleapis.com/chromium-browser-snapshots/Win_x64/588429/chrome-win32.zip'        #定义下载地址
             target_file = 'chrome-win.zip'                                                          #定义下载文件名
             await download_file(chromeurl, target_file)           #下载
             with zipfile.ZipFile(target_file, 'r') as zip_ref:
@@ -189,12 +192,67 @@ async def initql():        #初始化青龙并获取青龙的token
         print(f"连接青龙发生异常，请确认配置文件：{e}")
         await asyncio.sleep(10)  # 等待10秒，等待
         raise SystemExit
+async def initql2():        #初始化青龙并获取青龙的token
+    global qlip2  # 声明这个是全局变量
+    client_id2 = None   #初始化变量
+    client_secret2 = None   #初始化变量
 
+    try:
+        with open(configfile, 'r', encoding='utf-8') as file:    #用UTF-8编码方式打开配置文件
+            lines = file.readlines()           #遍历每一行
+            for line in lines:
+                if 'qlip2=' in line:
+                    qlip2 = line.split('qlip2=')[-1].strip()         #找配置文件中qlip=的值并赋予qlip
+                elif 'client_id2=' in line:
+                    client_id2 = line.split('client_id2=')[-1].strip()       #同上
+                elif 'client_secret2=' in line:
+                    client_secret2 = line.split('client_secret2=')[-1].strip()     #同上
+
+        if not qlip2 or not client_id2 or not client_secret2:         #如果没有三个参数变量没有值，就报下面的错误，单个检测报错
+            if not qlip2:
+                print('青龙IP2配置出错，请确认配置文件')
+                await asyncio.sleep(10)  # 等待10秒，等待
+            if not client_id2:
+                print('青龙client_id2配置出错，请确认配置文件')
+                await asyncio.sleep(10)  # 等待10秒，等待
+            if not client_secret2:
+                print('青龙client_secret2配置出错，请确认配置文件')
+                await asyncio.sleep(10)  # 等待10秒，等待
+            raise SystemExit
+
+        async with aiohttp.ClientSession() as session:                #获取青龙的token
+            async with session.get(f"{qlip2}/open/auth/token?client_id={client_id2}&client_secret={client_secret2}") as response:
+                dicts = await response.json()
+                print('已连接青龙容器...')
+            return dicts['data']['token']
+    except Exception as e:
+        print(f"连接青龙发生异常，请确认配置文件2：{e}")
+        await asyncio.sleep(10)  # 等待10秒，等待
+        raise SystemExit
 async def qlenvs():   #获取青龙全部jdck变量
     try:
         async with aiohttp.ClientSession() as session:                              # 异步操作命令
-            url = f"{qlip}/open/envs?searchValue="                   #设置设置连接
+            url = f"{qlip}/open/envs?searchValue=JD_COOKIE"                   #设置设置连接
             headers = {'Authorization': 'Bearer ' + qltoken}                         #设置api的headers请求头
+            async with session.get(url, headers=headers) as response:                              #获取变量请求
+                rjson = await response.json()                             #解析返回的json数据
+                if rjson['code'] == 200:                                #如果返回code200,根据青龙api文档
+                    jd_cookie_data = [env for env in rjson['data'] if env.get('name') == 'JD_COOKIE']            #获取全部jd的变量
+                    #global notess      #把备注设置为全部变量
+                    #notess = [env['remarks'] for env in rjson['data'] if env.get('name') == 'JD_COOKIE' and env.get('status') == 0]             #找到所有name为JD_COOKIE，status为0的字典列表，然后把remarks的值放进notess
+                    global proxy_server      #把代理变量设为全局变量
+                    proxy_server = next((env['value'].strip().split('\n') for env in rjson['data'] if env.get('name') == 'AutoJDCK_DP'), None)      #获取代理变量
+                    return jd_cookie_data
+                else:
+                    print(f"获取环境变量失败：{rjson['message']}")
+    except Exception as e:
+        print(f"获取环境变量失败：{str(e)}")
+
+async def qlenvs2():   #获取青龙全部jdck变量
+    try:
+        async with aiohttp.ClientSession() as session:                              # 异步操作命令
+            url = f"{qlip2}/open/envs?searchValue=JD_COOKIE"                   #设置设置连接
+            headers = {'Authorization': 'Bearer ' + qltoken2}                         #设置api的headers请求头
             async with session.get(url, headers=headers) as response:                              #获取变量请求
                 rjson = await response.json()                             #解析返回的json数据
                 if rjson['code'] == 200:                                #如果返回code200,根据青龙api文档
@@ -208,8 +266,6 @@ async def qlenvs():   #获取青龙全部jdck变量
                     print(f"获取环境变量失败：{rjson['message']}")
     except Exception as e:
         print(f"获取环境变量失败：{str(e)}")
-
-
 
 async def push_message(qltoken, text):
     js_file = 'JdckNotify.js'
@@ -244,14 +300,19 @@ notify.sendNotify(`JDCK自动登录失败通知`, message)
 async def logon_main(chromium_path):             #读取配置文件账户密码，登录
     global qltoken   #初始化青龙获取青龙ck
     qltoken = await initql()      #初始化青龙token
+    global qltoken2
+    qltoken2 = await initql2()
     global envs               #青龙环境全局变量
     envs = await qlenvs()   #获取青龙环境变量(仅JC_COOKIE)
+    global envs2               #青龙环境全局变量
+    envs2 = await qlenvs2()
     await init_web_display()     #初始化WebDisplay
     global asgs
     asgs = await init_proxy_server()   #初始化登录代理（浏览器args的值）
     with open(configfile, 'r', encoding='utf-8') as jdckpasswd:
         for line in jdckpasswd:    # 去除行尾的换行符
-            line = line.strip()    
+            line = line.strip()
+            print(line)
             userdata = line.split('#')    # 使用'#'分割字符串
             if len(userdata) == 3:   #分为三段，如果不满足3段，则跳过此行
                 usernum, passwd, notes= userdata     # 解包列表到四个变量，并按照指定格式打印
@@ -278,11 +339,12 @@ async def get_user_choice():            #短信验证选择
 
 
 async def validate_logon(usernum, passwd, notes, chromium_path):                                         #登录操作
-    print(f"正在登录 {notes} {usernum} 的账号")
+    print(f"正在登录 {notes} {usernum} 的账号----------------------------------------------")
     browser = await launch({
         'executablePath': chromium_path,        #定义chromium路径
         'headless': WebDisplay,  # 设置为非无头模式，即可视化浏览器界面
         'args': asgs,
+        'dumpio': True
     })
     page = await browser.newPage()  # 打开新页面
     await page.setViewport({'width': 360, 'height': 640})  # 设置视窗大小
@@ -294,7 +356,12 @@ async def validate_logon(usernum, passwd, notes, chromium_path):                
         try:                              #找ck
             if await page.J ('#searchWrapper'):
                 await SubmitCK(page, notes)  #提交ck
+                await SubmitCK2(page, notes)  #提交ck
+                print("正在关闭浏览器")
+                subprocess.Popen("taskkill /F /IM chrome.EXE ", shell=True)
+                await asyncio.sleep(4)  # 等待10秒，等待
                 await browser.close()  #关闭浏览器
+                print("关闭浏览器成功")
                 should_break = True
                 break
         except Exception as e:
@@ -388,7 +455,7 @@ async def SubmitCK(page, notes):  #提交ck
         #file.write(content)  # 写入文件
     found_ddhhs = False                             #初始化循环变量，用于后面找不到变量的解决方式
     for env in envs:
-        if notes in env["remarks"]:      #在所有变量值中找remarks，找到执行下面的更新ck
+        if pt_pin in env["value"]:      #在所有变量值中找remarks，找到执行下面的更新ck
             envid = env["id"]                             #把找到的id设为envid的变量值
             remarks = env["remarks"]                             #同上
             found_ddhhs = True                             #把变量设为True，停下循环
@@ -397,7 +464,8 @@ async def SubmitCK(page, notes):  #提交ck
                 'value': f"pt_key={pt_key};pt_pin={pt_pin};",
                 "remarks": remarks,
                 "id": envid,
-            }                             #提交青龙的数据
+            }
+            #提交青龙的数据
             async with aiohttp.ClientSession() as session:                             #下面是提交
                 url = f"{qlip}/open/envs"
                 async with session.put(url, headers={'Authorization': 'Bearer ' + qltoken}, json=data) as response:            #更新变量的api
@@ -429,6 +497,74 @@ async def SubmitCK(page, notes):  #提交ck
         async with aiohttp.ClientSession() as session:
             url = f"{qlip}/open/envs"
             async with session.post(url, headers={'Authorization': 'Bearer ' + qltoken}, json=data) as response:
+                rjson = await response.json()
+                if rjson['code'] == 200:
+                    print(f"新建{notes}环境变量成功")
+                    return True
+                else:
+                    print(f"新建{notes}环境变量失败：{rjson['message']}")
+                    return False
+
+async def SubmitCK2(page, notes):  #提交ck
+    cookies = await page.cookies()                             #设置cookeis变量，用于下面的搜索
+    pt_key = ''                             #初始化变量
+    pt_pin = ''                             #初始化变量
+    for cookie in cookies:                              #找所有网页所有的cookie数据
+        if cookie['name'] == 'pt_key':                             #找到pt_key的值
+            pt_key = cookie['value']                             #把值设置到变量pt_key
+        elif cookie['name'] == 'pt_pin':                             #找到pt_pin的值
+            pt_pin = cookie['value']                             #把值设置到变量pt_pin
+    print('{} 登录成功 pt_key={};pt_pin={};'.format(notes, pt_key, pt_pin))    # 打印 pt_key 和 pt_pin 值
+    #with open('jdck.log', 'a+', encoding='utf-8') as file:    #打开文件
+        #content = '{}   {}   pt_key={};pt_pin={};\n'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), notes, pt_key, pt_pin)   # 构造要写入文件的字符串
+        #file.write(content)  # 写入文件
+    found_ddhhs = False                             #初始化循环变量，用于后面找不到变量的解决方式
+    for env in envs2:
+        if pt_pin in env["value"]:      #在所有变量值中找remarks，找到执行下面的更新ck
+            envid = env["id"]                             #把找到的id设为envid的变量值
+            remarks = env["remarks"]                             #同上
+            remarks=notes
+            found_ddhhs = True                             #把变量设为True，停下循环
+            data = {
+                'name': "JD_COOKIE",
+                'value': f"pt_key={pt_key};pt_pin={pt_pin};",
+                "remarks": remarks,
+                "id": envid,
+            }
+            print(data)
+            #提交青龙的数据
+            async with aiohttp.ClientSession() as session:                             #下面是提交
+                url = f"{qlip2}/open/envs"
+    
+                async with session.put(url, headers={'Authorization': 'Bearer ' + qltoken2}, json=data) as response:            #更新变量的api
+                    rjson = await response.json()
+                    if rjson['code'] == 200:
+                        url2 = f"{qlip2}/open/envs/enable"
+                        data2 = [
+                            envid
+                        ]
+                        async with session.put(url2, headers={'Authorization': 'Bearer ' + qltoken2}, json=data2) as response:            #启用变量的api
+                            rjson2 = await response.json()
+                            if rjson2['code'] == 200:
+                                print(f"更新{notes}环境变量成功")
+                                return True
+                            else:
+                                print(f"启用{notes}环境变量失败：{rjson['message']}")
+                                return False
+                    else:
+                        print(f"更新{notes}环境变量失败：{rjson['message']}")
+                        return False
+    if not found_ddhhs:          #如果没找到pt_pin，执行下面的新建ck，以下同上，只是新建不是更新
+        data = [
+            {
+                'name': "JD_COOKIE",
+                'value': f"pt_key={pt_key};pt_pin={pt_pin};",
+                "remarks": notes,
+            }
+        ]
+        async with aiohttp.ClientSession() as session:
+            url = f"{qlip}/open/envs"
+            async with session.post(url, headers={'Authorization': 'Bearer ' + qltoken2}, json=data) as response:
                 rjson = await response.json()
                 if rjson['code'] == 200:
                     print(f"新建{notes}环境变量成功")
