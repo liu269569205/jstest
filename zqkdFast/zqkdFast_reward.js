@@ -7,7 +7,7 @@
 定时一天一次就行
 10 22 * * *
 */
-var proxy="http://hk.rmysh.com/";
+var proxy="http://101.32.18.93:88/";
 var getStackTrace = function() {
 	var obj = {};
 	Error.captureStackTrace(obj, getStackTrace);
