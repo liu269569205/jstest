@@ -1,4 +1,5 @@
-# 美美日历AppStore下载抓https://apimmrl.xiaoqiezia.cn下的authorization, device, model, brand, user_agent, osversion参数，用&符号连接，多账号用@隔开
+# 美美日历
+#AppStore下载抓https://apimmrl.xiaoqiezia.cn下的authorization, device, model, brand, user_agent, osversion参数，用&符号连接，多账号用@隔开
 
 import requests
 import time
