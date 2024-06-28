@@ -3013,6 +3013,7 @@ function _0x1c156a(_0x357cd2) {
       for (let _0x3993a1 of _0xa9c361.filter(_0x5cc36c => !!_0x5cc36c)) {
         for (let _0x44bd7c of _0x3993a1.split(_0x371509).filter(_0x1b44af => !!_0x1b44af)) {
           _0x44bd7c = decodeURIComponent(_0x44bd7c);
+		   console.log(_0x44bd7c)
           if (this.userList.includes(_0x44bd7c)) {
             continue;
           }
