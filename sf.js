@@ -22,7 +22,7 @@ const _0x1366a8 = _0x1c156a("顺丰速运"),
     CookieJar: _0xd37655
   } = require("tough-cookie"),
   _0x3d0561 = "sfsy",
-  _0x371509 = /[@]/,
+  _0x371509 = /[&]/,
   _0x12e0b9 = [_0x3d0561 + "Url"],
   _0x94f81d = process.env[_0x3d0561 + "Bee"] || "false",
   _0x3bec27 = process.env[_0x3d0561 + "DragonBoatDraw"] || "false",
