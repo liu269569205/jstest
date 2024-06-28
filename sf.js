@@ -3020,7 +3020,7 @@ function _0x1c156a(_0x357cd2) {
           this.userList.push(new _0x12bc08(_0x44bd7c));
         }
       }
-	  console.log(this.userList)
+	 // console.log(this.userList)
       this.userCount = this.userList.length;
       if (!this.userCount) {
         const _0x2ce365 = {
