@@ -3010,8 +3010,8 @@ function _0x1c156a(_0x357cd2) {
     }
     ["read_env"](_0x12bc08) {
       let _0xa9c361 = _0x12e0b9.map(_0x324fc9 => process.env[_0x324fc9]);
-      for (let _0x3993a1 of _0xa9c361.filter(_0x5cc36c => !!_0x5cc36c)) {
-        for (let _0x44bd7c of _0x3993a1.split(_0x371509).filter(_0x1b44af => !!_0x1b44af)) {
+      //for (let _0x3993a1 of _0xa9c361.filter(_0x5cc36c => !!_0x5cc36c)) {
+        for (let _0x44bd7c of _0xa9c361.split(_0x371509).filter(_0x1b44af => !!_0x1b44af)) {
           //_0x44bd7c = decodeURIComponent(_0x44bd7c);
 		   console.log(_0x44bd7c)
           if (this.userList.includes(_0x44bd7c)) {
@@ -3019,7 +3019,7 @@ function _0x1c156a(_0x357cd2) {
           }
           this.userList.push(new _0x12bc08(_0x44bd7c));
         }
-      }
+     // }
 	 // console.log(this.userList)
       this.userCount = this.userList.length;
       if (!this.userCount) {
