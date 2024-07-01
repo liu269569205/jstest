@@ -104,7 +104,8 @@ async function get_num1() {
 				num=data.data.num-data.data.use
             } catch (e) {
                 console.log(data);
-                $.logErr(e, resp)
+                //$.logErr(e, resp)
+				 console.log("江泰的没流量了");
             } finally {
                 resolve(num);
             }
@@ -117,7 +118,10 @@ var lastip;
 	if(lastip!=ip){
 		await delall();
 		var left1=await get_num1();
-		if(left1>0) return;
+		if(left1>0){
+
+			return;
+		} 
 		var left=await get_num();
 		if(left<1){
 			//await addip('192.168.168.1');
