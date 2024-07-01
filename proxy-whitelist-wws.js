@@ -71,6 +71,56 @@ async function addip(ip) {
         })
     })
 }
+var got=require("got");
+const api = got.extend({
+  prefixUrl: 'http://127.0.0.1:5700',
+  retry: { limit: 0 },
+});
+var client_id="QXh8z_q5BsNA";
+var client_secret="v2B0MkGx3Y-4TGK2-h4JTNSu";
+
+async function getToken () {
+   const body = await api({
+    url: 'open/auth/token?client_id='+client_id+'&client_secret='+client_secret,
+    headers: {
+      Accept: 'application/json',
+    },
+  }).json();
+  return body.data['token'];
+}
+var DisableCk = async (eid) => {
+	console.log("停用"+eid)
+  const token = await getToken();
+  const body = await api({
+    method: 'put',
+    url: 'open/envs/disable',
+    params: { t: Date.now() },	
+    body: JSON.stringify([eid]),
+    headers: {
+      Accept: 'application/json',
+      authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+  }).json();
+  return body;
+};
+
+var EnableCk = async (eid) => {
+	console.log("启用"+eid)
+  const token = await getToken();
+  const body = await api({
+    method: 'put',
+    url: 'open/envs/enable',
+    params: { t: Date.now() },	
+    body: JSON.stringify([eid]),
+    headers: {
+      Accept: 'application/json',
+      authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+  }).json();
+  return body;
+};
 async function get_num() {
 	console.log("剩余量")
 		var num=0;
@@ -119,13 +169,16 @@ var lastip;
 		await delall();
 		var left1=await get_num1();
 		if(left1>0){
-
+			await DisableCk(282);//停用wws
+			await EnableCk(269);//启用jt
 			return;
 		} 
 		var left=await get_num();
 		if(left<1){
 			//await addip('192.168.168.1');
 		}else{
+			await DisableCk(269);//停用jt
+			await EnableCk(282);//启用wws
 			await addip(ip);
 		}
 		
