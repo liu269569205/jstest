@@ -74,7 +74,7 @@ async function addip(ip) {
 async function get_num() {
 	console.log("剩余量")
 		var num=0;
-	var url='http://op.xiequ.cn/ApiUser.aspx?act=suitdt&uid=106113&ukey=663C0751AC949FD10261F658A2928E9A'
+	var url='http://op.xiequ.cn/ApiUser.aspx?act=suitdt&uid=106113&ukey=663C0751AC949FD10261F658A2928E9A'//王万松
   let myRequest = {url: url, method: `GET`};
   return new Promise(async resolve => {
         $.get(myRequest, (err, resp, data) => {
@@ -94,7 +94,7 @@ async function get_num() {
 async function get_num1() {
 	console.log("剩余量")
 		var num=0;
-	var url='http://op.xiequ.cn/ApiUser.aspx?act=suitdt&uid=106093&ukey=FF8664E13108A4E5991F8C814DB0D2E5'
+	var url='http://op.xiequ.cn/ApiUser.aspx?act=suitdt&uid=106118&ukey=2DCB7E0DA0284EAEF2B7BF8F5B29E7B6'//江泰的
   let myRequest = {url: url, method: `GET`};
   return new Promise(async resolve => {
         $.get(myRequest, (err, resp, data) => {
@@ -116,6 +116,8 @@ var lastip;
 	var ip=await getip();
 	if(lastip!=ip){
 		await delall();
+		var left1=await get_num1();
+		if(left1>0) return;
 		var left=await get_num();
 		if(left<1){
 			//await addip('192.168.168.1');
