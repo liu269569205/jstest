@@ -135,7 +135,7 @@ async function get_num() {
 				num=data.data.num-data.data.use
             } catch (e) {
                 console.log(data);
-                $.logErr(e, resp)
+               console.log("江泰没流量")
             } finally {
                 resolve(num);
             }
