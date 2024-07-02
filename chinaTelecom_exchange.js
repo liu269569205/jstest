@@ -234,9 +234,9 @@ class _0x199ede extends _0x770e22 {
   }
 }
 !(async () => {
-  if (!(await _0x59256c())) {
+  /*if (!(await _0x59256c())) {
     return;
-  }
+  }*/
   _0x503289.read_env(_0x199ede);
   let _0x5aab3d = [];
   for (let _0x44c1b4 of _0x503289.userList) {
