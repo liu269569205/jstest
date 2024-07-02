@@ -132,7 +132,7 @@ async function get_num() {
             try {
 				console.log(data)
                 data=JSON.parse(data);
-				num=data.data.num-data.data.use
+				num=parseInt(data.data.num)-parseInt(data.data.use)
             } catch (e) {
                 console.log(data);
                console.log("江泰没流量")
