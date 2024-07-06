@@ -16,7 +16,7 @@ https://user.youth.cn/FastApi/NewTaskSimple/getTaskList  https://raw.githubuserc
 [MITM]
 user.youth.cn
 */
-var proxy="http://101.32.18.93:88/";
+var proxy="http://zipchannel.top:4000/";
 var getStackTrace = function() {
 	var obj = {};
 	Error.captureStackTrace(obj, getStackTrace);
