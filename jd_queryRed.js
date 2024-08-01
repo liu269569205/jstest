@@ -22,6 +22,7 @@ if ($.isNode()) {
 } else {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
+!(async () => {
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
 		cookie = cookiesArr[i];
@@ -31,6 +32,7 @@ if ($.isNode()) {
 		await query(cookie)
 	}
   }
+})()
 async function query(cookie) {
     let page = 1
     let req = ""
