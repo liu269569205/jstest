@@ -30,6 +30,7 @@ if ($.isNode()) {
 		//let pin =cookie.split(";")[1]
 		console.log("当前账号:"+pin)
 		await query(cookie)
+		await $.wait(10);
 	}
   }
 })()
