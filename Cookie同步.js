@@ -40,7 +40,7 @@ const $ = new Env('Cookie同步');
         if (remoteCK) {
            // console.log("获取到远程容器的ck:"+JSON.stringify(remoteCK))
             //只更新20个
-            if (i < 20) {
+            if (i < actived.length) {
                 //判断是新版的id还是旧版的id
                 var id =version.match(/_id/)?remoteCK._id:remoteCK.id
 				id=remoteCK.id
