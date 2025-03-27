@@ -5,7 +5,7 @@ require('dotenv').config();
 //当前所在的环境
 let current_access={"access":"client_id=HqY0u_NaoZon&client_secret=_-wq99wQ3lEPttpSl-yJ12qm", "url":"http://192.168.168.81:5700"} //这里改成自己的 wsk 所在容器
 //远程服务器环境
-let remote_access={"access":"client_id=HqY0u_NaoZon&client_secret=_-wq99wQ3lEPttpSl-yJ12qm", "url":"http://192.168.168.21:5700"}  //这里改成 跑 任务 的cookie所在容器
+let remote_access={"access":"client_id=yBvP_K4HF1Sq&client_secret=5mz_pDdE0uAOGd-jKPNvZ4v8", "url":"http://192.168.168.21:5700"}  //这里改成 跑 任务 的cookie所在容器
 
 const fs = require('fs');
 
