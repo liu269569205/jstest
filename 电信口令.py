@@ -601,7 +601,7 @@ async def AI_Yun1(phone, ticket):
 async def main(isTrue):
     tasks = []
 
-    phone_list = PHONES.split('\n') 
+    phone_list = PHONES.split('&') 
     total_tasks = len(phone_list)
     print(f"总任务数：{total_tasks}")
     semaphore = asyncio.Semaphore(5)
@@ -674,7 +674,7 @@ WELFARE_CODE=os.environ.get('dx_kl') or "心有灵犀,绑定福利,事事如意,
 WELFARE_CODES = WELFARE_CODE.split(',') 
 
 # 处理账号字符串，移除空行并清理每行的空白字符
-phone_list = [line.strip() for line in chinaTelecomAccount.split('\n') if line.strip()]
+phone_list = [line.strip() for line in chinaTelecomAccount.split('&') if line.strip()]
 
 PHONES = os.environ.get('chinaTelecomAccount') or os.environ.get('PHONES1') or '\n'.join(phone_list)
 
