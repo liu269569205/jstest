@@ -76,8 +76,8 @@ const api = got.extend({
   prefixUrl: 'http://127.0.0.1:5700',
   retry: { limit: 0 },
 });
-var client_id="QXh8z_q5BsNA";
-var client_secret="v2B0MkGx3Y-4TGK2-h4JTNSu";
+var client_id="yBvP_K4HF1Sq";
+var client_secret="5mz_pDdE0uAOGd-jKPNvZ4v8";
 
 async function getToken () {
    const body = await api({
