@@ -149,12 +149,12 @@ var lastip;
 		await delall();
 		var left=await get_num();
 		if(left<1){
-			await DisableCk(53);
-			await EnableCk(54);
+			await DisableCk(182);
+			await EnableCk(183);
 			//await addip('192.168.168.1');
 		}else{
-			await DisableCk(54);
-			await EnableCk(53);
+			await DisableCk(183);
+			await EnableCk(182);
 			await addip(ip);
 		}
 		

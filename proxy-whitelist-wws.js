@@ -169,16 +169,16 @@ var lastip;
 		await delall();
 		var left1=await get_num1();
 		if(left1>0){
-			await DisableCk(54);//停用wws
-			await EnableCk(53);//启用jt
+			await DisableCk(183);//停用wws
+			await EnableCk(182);//启用jt
 			return;
 		} 
 		var left=await get_num();
 		if(left<1){
 			//await addip('192.168.168.1');
 		}else{
-			await DisableCk(54);//停用jt
-			await EnableCk(53);//启用wws
+			await DisableCk(182);//停用jt
+			await EnableCk(183);//启用wws
 			await addip(ip);
 		}
 		
