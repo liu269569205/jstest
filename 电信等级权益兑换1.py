@@ -547,9 +547,9 @@ def main():
     else:
         print('添加PHONES1环境变量啊')
     #chinaTelecomAccount = ""
-    for i in chinaTelecomAccount.split('#'):
+    for i in chinaTelecomAccount.split('&'):
 
-        i = i.split('&')
+        i = i.split('#')
         phone = i[0]
         password = i[1]
         level = i[2]
