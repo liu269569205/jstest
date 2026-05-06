@@ -13,6 +13,7 @@ let cropType = [{"1":"高粱"},{"2":"小麦"}];
 let loginCode = '';
 let token = '';
 let notice = '';
+const XiJiu_tokens=($.isNode() ? JSON.parse(process.env.XiJiu) : $.getjson("XiJiu_tokens")) || [];
 !(async () => {
     if (typeof $request != "undefined") {
         await getCookie();
@@ -22,17 +23,27 @@ let notice = '';
 })().catch((e) => {$.log(e)}).finally(() => {$.done({});});
 
 async function main() {
+	if(XiJiu_tokens){
+		XiJiu=XiJiu_tokens
+	}
     for (const item of XiJiu) {
-        id = item.id;
-        loginCode = item.loginCode;
+
+		if(XiJiu_tokens){
+			id = item.id;
+			token = item.token;
+		}else{
+			id = item.id;
+			loginCode = item.loginCode;
+			
+			console.log('获取token')
+			let login = await loginGet(`/anti-channeling/public/index.php/api/v2/Member/getJwt`);
+			if (login.code != 0) {
+				console.log(login.msg)
+				continue
+			}
+			token = login.data.jwt;
+		}
         console.log(`用户：${id}开始任务`)
-        console.log('获取token')
-        let login = await loginGet(`/anti-channeling/public/index.php/api/v2/Member/getJwt`);
-        if (login.code != 0) {
-            console.log(login.msg)
-            continue
-        }
-        token = login.data.jwt;
         console.log(token)
         //签到
         console.log("开始签到")
