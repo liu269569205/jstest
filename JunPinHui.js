@@ -8,6 +8,7 @@ const $ = new Env('君品荟');
 const JunPinHui = ($.isNode() ? process.env.JunPinHui : $.getdata("JunPinHui")) || '';
 const OCR_SERVER = ($.isNode() ? process.env.OCR_SERVER : $.getdata("OCR_SERVER")) || 'https://ddddocr.xzxxn7.live';
 const GHPROXYURL = ($.isNode() ? process.env.GHPROXYURL : $.getdata("GHPROXYURL")) || 'https://ghfast.top';
+const xj_token = ($.isNode() ? process.env.JunPinHui : $.getdata("JunPinHui")) || '';
 let appkey = 'OzVFDV3c6omb';
 let actId = '';
 let Utils = undefined;
@@ -25,23 +26,32 @@ async function main() {
         await sendMsg('先去boxjs填写账号密码');
         return
     }
-    let arr = JunPinHui.split(" ");
+	let arr=[];
+	if(xj_token)
+		arr = xj_token.split("&");
+	else
+		arr = JunPinHui.split(" ");
     for (const item of arr) {
-        phone = item.split("&")[0]
-        pwd = item.split("&")[1]
-        console.log(`用户：${phone}开始任务`)
-        const encryptor = new (Utils.loadJSEncrypt());
-        const pubKey
-            = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDZxexT+63AFID2lykG6jVmZpVkW6IitJjWukMmBGA8hR7qSTIsDKTQ'
-            + 'DjzKAnTgD3Zn3sNQlqQCxpyTNTP2T+/OZxet1nrbbOAPAi4TrEA61wMO+dnP7IbONmCqg3lDcgiu+b7imOjPxNOGMoeTHGVD2L7tq4S9HuC01Ru3WprVRwIDAQAB'
-        encryptor.setPublicKey(pubKey);
-        const encrypted = encryptor.encrypt(pwd)
-        let login = await commonPost('/api/login/phoneLogin', {"phone": phone, "channelCode": "xj_mall_wx_applet", "password": encrypted});
-        if (login.code != 10000) {
-            await sendMsg(`用户：${phone}\n${login.message}`);
-            continue
-        }
-        token = login.data.token;
+		if(xj_token){
+			phone = item.split("&")[0]
+			pwd = item.split("&")[1]
+			console.log(`用户：${phone}开始任务`)
+			const encryptor = new (Utils.loadJSEncrypt());
+			const pubKey
+				= 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDZxexT+63AFID2lykG6jVmZpVkW6IitJjWukMmBGA8hR7qSTIsDKTQ'
+				+ 'DjzKAnTgD3Zn3sNQlqQCxpyTNTP2T+/OZxet1nrbbOAPAi4TrEA61wMO+dnP7IbONmCqg3lDcgiu+b7imOjPxNOGMoeTHGVD2L7tq4S9HuC01Ru3WprVRwIDAQAB'
+			encryptor.setPublicKey(pubKey);
+			const encrypted = encryptor.encrypt(pwd)
+			let login = await commonPost('/api/login/phoneLogin', {"phone": phone, "channelCode": "xj_mall_wx_applet", "password": encrypted});
+			if (login.code != 10000) {
+				await sendMsg(`用户：${phone}\n${login.message}`);
+				continue
+			}
+			token = login.data.token;
+		}else{
+			token=item;
+		}
+        
         //签到
         let captcha = await commonPost('/api/captcha/get',{"captchaType" : "blockPuzzle"})
         let getXpos = await slidePost({'slidingImage': captcha.data.repData.jigsawImageBase64, 'backImage': captcha.data.repData.originalImageBase64})
