@@ -13,6 +13,7 @@ let cropType = [{"1":"高粱"},{"2":"小麦"}];
 let loginCode = '';
 let token = '';
 let notice = '';
+let authorization='';
 const XiJiu_tokens=($.isNode() ? JSON.parse(process.env.XiJiu_tokens) : $.getjson("XiJiu_tokens")) || [];
 !(async () => {
     if (typeof $request != "undefined") {
@@ -31,6 +32,7 @@ async function main() {
 		if(XiJiu_tokens){
 			id = item.id;
 			token = item.token;
+			authorization = item.authorization;
 		}else{
 			id = item.id;
 			loginCode = item.loginCode;
@@ -406,7 +408,8 @@ async function makePost(url,body = '') {
             url: `https://apimallwm.exijiu.com${url}`,
             headers : {
                 'Connection': 'keep-alive',
-                'Authorization': token,
+                'Authorization': authorization,
+					'X-Access-Token':token,
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF WindowsWechat(0x63090a13) XWEB/9129',
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Accept': 'application/json, text/plain, */*',
@@ -444,7 +447,8 @@ async function commonGet(url) {
             url: `https://apimallwm.exijiu.com${url}`,
             headers : {
                 'Connection': 'keep-alive',
-                'Authorization': token,
+                'Authorization': authorization,
+					'X-Access-Token':token,
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF WindowsWechat(0x63090a13) XWEB/9129',
                 'Content-Type': 'application/json',
                 'Accept': '*/*',
