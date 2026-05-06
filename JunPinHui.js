@@ -32,7 +32,7 @@ async function main() {
 	else
 		arr = JunPinHui.split(" ");
     for (const item of arr) {
-		if(xj_token){
+		if(!xj_token){
 			phone = item.split("&")[0]
 			pwd = item.split("&")[1]
 			console.log(`用户：${phone}开始任务`)
