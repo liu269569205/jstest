@@ -8,7 +8,7 @@ const $ = new Env('习酒');
 const notify = $.isNode() ? require('../sendNotify') : '';
 var XiJiu = ($.isNode() ? JSON.parse(process.env.XiJiu) : $.getjson("XiJiu")) || [];
 const XiJiu_Exchange = ($.isNode() ? process.env.XiJiu_Exchange : $.getdata("XiJiu_Exchange")) === 'true' || false;
-const OCR_SERVER = ($.isNode() ? process.env.OCR_SERVER : $.getdata("OCR_SERVER")) || 'https://ddddocr.xzxxn7.live';
+const OCR_SERVER = ($.isNode() ? process.env.OCR_SERVER : $.getdata("OCR_SERVER")) || 'http://192.168.168.81:7777';
 let cropType = [{"1":"高粱"},{"2":"小麦"}];
 let loginCode = '';
 let token = '';
