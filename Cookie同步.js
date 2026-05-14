@@ -1,3 +1,7 @@
+/*
+Cookie同步
+55 11 * * * Cookie同步.js
+ */
 const {
     getEnvs,
     DisableCk,
